@@ -36,16 +36,17 @@ def plot_chart(data, currency):
 
 
 currencies = {
-    "BTC-USD": "BTC-USD",
-    "EUR-USD": "EURUSD=X",
-    "USD-JPY": "JPY=X",
-    "GBP-USD": "GBPUSD=X",
-    "AUD-USD": "AUDUSD=X",
-    "EUR-GBP": "EURGBP=X",
-    "EUR-CHF": "EURCHF=X",
-    "EUR-JPY": "EURJPY=X",
-    "EUR-PLN": "EURPLN=X",
-    "PLN-USD": "PLNUSD=X"
+    #"BTC-USD": "BTC-USD",
+    #"EUR-USD": "EURUSD=X",
+    #"USD-JPY": "JPY=X",
+    #"GBP-USD": "GBPUSD=X",
+    #"AUD-USD": "AUDUSD=X",
+    #"EUR-GBP": "EURGBP=X",
+   # "EUR-CHF": "EURCHF=X",
+    #"EUR-JPY": "EURJPY=X",
+    #"EUR-PLN": "EURPLN=X",
+    #"PLN-USD": "PLNUSD=X"
+    "snp": "^GSPC"
 }
 start_date = "2017-01-01"
 end_date = "2022-06-03"
@@ -53,5 +54,6 @@ interval = "1d"
 
 for name in currencies:
     data = get_yfinance(currencies[name], start_date, end_date, interval)
-    save_to_file(data, "data/currencies/" + name + ".csv")
-    # plot_chart(data, name)
+    print(data)
+    #save_to_file(data, "data/currencies/" + name + ".csv")
+   # plot_chart(data, name)
