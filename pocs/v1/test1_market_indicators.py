@@ -2,6 +2,7 @@ from datetime import datetime
 
 import numpy as np
 
+from data.interval import Interval, IntervalPeriod
 from symbols import indices, index_components, non_index_components
 from query.yfinance.provider import YFinanceAPIProvider
 
@@ -19,22 +20,21 @@ def main():
 
     provider = YFinanceAPIProvider()
 
-    indices_provider = provider.indices()
     stock_provider = provider.stock()
 
     ind = dict()
     stc = dict()
 
     for name, symbol in indices.items():
-        series = indices_provider.get_daily_data(date_begin, date_end, symbol)
+        series = stock_provider.get_data(date_begin, date_end, Interval(IntervalPeriod.days, 1), symbol)
         ind[name] = series
 
     for name, symbol in index_components.items():
-        series = stock_provider.get_daily_data(date_begin, date_end, symbol)
+        series = stock_provider.get_data(date_begin, date_end,Interval(IntervalPeriod.days, 1), symbol)
         stc[name] = series
 
     for name, symbol in non_index_components.items():
-        series = stock_provider.get_daily_data(date_begin, date_end, symbol)
+        series = stock_provider.get_data(date_begin, date_end,Interval(IntervalPeriod.days, 1), symbol)
         stc[name] = series
 
     print(f'Market measures across [{date_begin.strftime("%d.%m.%Y")}] - [{date_end.strftime("%d.%m.%Y")}] time period:')
@@ -77,8 +77,6 @@ def main():
             corr_v = np.corrcoef(a_df['close'], index_df['close'])[0, 1]
             print(f'Beta of [{stc_name}] against [{ind_name}] = {beta_v}')
             print(f'Correlation between [{stc_name}] and [{ind_name}] = {corr_v}')
-
-
 
 
 if __name__ == '__main__':

@@ -1,15 +1,15 @@
 from query.provider import APIProvider
-from query.yfinance.forex import YFinanceForexAPIProvider
-from query.yfinance.indices import YFinanceIndicesAPIProvider
-from query.yfinance.stock import YFinanceStockAPIProvider
+from query.yfinance.forex import YFinanceForexQueryAPIProvider
+from query.yfinance.fundamental import YFinanceFundamentalQueryAPIProvider
+from query.yfinance.stock import YFinanceStockQueryAPIProvider
 
 
 class YFinanceAPIProvider(APIProvider):
+    def fundamental(self):
+        return YFinanceFundamentalQueryAPIProvider()
+
     def stock(self):
-        return YFinanceStockAPIProvider()
+        return YFinanceStockQueryAPIProvider()
 
     def forex(self):
-        return YFinanceForexAPIProvider()
-
-    def indices(self):
-        return YFinanceIndicesAPIProvider()
+        return YFinanceForexQueryAPIProvider()

@@ -1,12 +1,18 @@
 from abc import ABC, abstractmethod
 from datetime import datetime
+from typing import Sequence
 
+from data.interval import Interval
 from data.symbol import Symbol
 from data.time_series import TimeSeries
 
 
-class ForexAPIProvider(ABC):
+class ForexQueryAPIProvider(ABC):
     @abstractmethod
-    def get_daily_exchange_rates(self, date_begin: datetime, date_end: datetime, from_symbol: Symbol,
-                                 to_symbol: Symbol) -> TimeSeries:
+    def available_intervals(self) -> Sequence[Interval]:
+        pass
+
+    @abstractmethod
+    def get_exchange_rates(self, date_start: datetime, date_end: datetime, interval: Interval, from_symbol: Symbol,
+                           to_symbol: Symbol) -> TimeSeries:
         pass

@@ -15,6 +15,10 @@ class TimePoints(ABC):
         pass
 
     @abstractmethod
+    def date(self) -> pandas.DataFrame:
+        pass
+
+    @abstractmethod
     def open(self) -> pandas.DataFrame:
         pass
 
@@ -67,6 +71,9 @@ class DFTimePoints(TimePoints):
 
     def __len__(self) -> int:
         return len(self.data.index)
+
+    def date(self) -> pandas.DataFrame:
+        return self.data.index.to_frame()
 
     def open(self) -> pandas.DataFrame:
         return self.data['open']

@@ -1,14 +1,19 @@
 from abc import ABC, abstractmethod
 
+from query.forex import ForexQueryAPIProvider
+from query.fundamental import FundamentalQueryAPIProvider
+from query.stock import StockQueryAPIProvider
+
+
 class APIProvider(ABC):
     @abstractmethod
-    def stock(self):
+    def stock(self) -> StockQueryAPIProvider:
         pass
 
     @abstractmethod
-    def forex(self):
+    def forex(self) -> ForexQueryAPIProvider:
         pass
 
     @abstractmethod
-    def indices(self):
+    def fundamental(self) -> FundamentalQueryAPIProvider:
         pass
