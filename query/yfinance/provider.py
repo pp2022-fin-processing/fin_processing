@@ -13,3 +13,6 @@ class YFinanceAPIProvider(APIProvider):
 
     def forex(self):
         return YFinanceForexQueryAPIProvider()
+
+    def news_and_sentiments(self):
+        pass
