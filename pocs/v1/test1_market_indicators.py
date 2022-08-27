@@ -7,7 +7,7 @@ from symbols import indices, index_components, non_index_components
 from query.yfinance.provider import YFinanceAPIProvider
 
 
-def beta_coefficent(a, index):
+def beta_coefficient(a, index):
     cov = np.cov(a, index)[0, 1]
     var = np.var(index)
     beta = cov / var
@@ -73,7 +73,7 @@ def main():
             index_df = index_df[index_df.index.isin(a_index)]
             a_df = a_df.loc[a_df.index.isin(index_index)]
 
-            beta_v = beta_coefficent(a_df['close'], index_df['close'])
+            beta_v = beta_coefficient(a_df['close'], index_df['close'])
             corr_v = np.corrcoef(a_df['close'], index_df['close'])[0, 1]
             print(f'Beta of [{stc_name}] against [{ind_name}] = {beta_v}')
             print(f'Correlation between [{stc_name}] and [{ind_name}] = {corr_v}')

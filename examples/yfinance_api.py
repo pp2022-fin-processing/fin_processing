@@ -36,17 +36,17 @@ def plot_chart(data, currency):
 
 
 currencies = {
-    #"BTC-USD": "BTC-USD",
-    #"EUR-USD": "EURUSD=X",
-    #"USD-JPY": "JPY=X",
-    #"GBP-USD": "GBPUSD=X",
-    #"AUD-USD": "AUDUSD=X",
-    #"EUR-GBP": "EURGBP=X",
-   # "EUR-CHF": "EURCHF=X",
-    #"EUR-JPY": "EURJPY=X",
-    #"EUR-PLN": "EURPLN=X",
-    #"PLN-USD": "PLNUSD=X"
-    "snp": "^GSPC"
+    "BTC-USD": "BTC-USD",
+    "EUR-USD": "EURUSD=X",
+    "USD-JPY": "JPY=X",
+    "GBP-USD": "GBPUSD=X",
+    "AUD-USD": "AUDUSD=X",
+    "EUR-GBP": "EURGBP=X",
+    "EUR-CHF": "EURCHF=X",
+    "EUR-JPY": "EURJPY=X",
+    "EUR-PLN": "EURPLN=X",
+    "PLN-USD": "PLNUSD=X"
+    #"snp": "^GSPC"
 }
 start_date = "2017-01-01"
 end_date = "2022-06-03"
