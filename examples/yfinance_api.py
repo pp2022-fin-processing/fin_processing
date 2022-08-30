@@ -6,6 +6,10 @@ def get_yfinance(ticker, start_date, end_date, interval):
     return yf.download(tickers=ticker, start=start_date, end=end_date, interval='1d')
 
 
+def get_shares_outstanding(ticker):
+    return yf.Ticker(ticker).shares
+
+
 def save_to_file(data, file):
     data.to_csv(file)
 
@@ -46,14 +50,34 @@ currencies = {
     "EUR-JPY": "EURJPY=X",
     "EUR-PLN": "EURPLN=X",
     "PLN-USD": "PLNUSD=X"
-    #"snp": "^GSPC"
+    # "snp": "^GSPC"
 }
+it_companies = {
+    "amazon": "amzn",
+    "apple": "aapl",
+    "google": "goog",
+    "microsoft": "msft",
+    "facebook": "ft",
+    "adobe": "adbe",
+    "accenture": "acn",
+    "akamai": "akam",
+    "activision": "atvi",
+    "autodesk": "adsk",
+    "nvidia": "nvda",
+    "intel": "intc",
+    "at&t": "t",
+    "tmobile": "tmus"
+}
+it_companies_shares_outstanding_path = 'data/earnings/IT-shares-outstanding'
+
 start_date = "2017-01-01"
 end_date = "2022-06-03"
 interval = "1d"
 
-for name in currencies:
-    data = get_yfinance(currencies[name], start_date, end_date, interval)
-    print(data)
-    #save_to_file(data, "data/currencies/" + name + ".csv")
-   # plot_chart(data, name)
+for name in it_companies:
+    # data = get_yfinance(currencies[name], start_date, end_date, interval)
+    # print(data)
+    # save_to_file(data, "data/currencies/" + name + ".csv")
+    # plot_chart(data, name)
+    data = get_shares_outstanding(it_companies[name])
+    save_to_file(data, it_companies_shares_outstanding_path + "/" + name + ".csv")
