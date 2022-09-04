@@ -13,10 +13,17 @@ def save_to_file(data, file):
     data.to_csv(file)
 
 
-def get_and_save_suite(path, suite):
+def get_and_save_suite_stock(path, suite):
     for name in suite:
         data = get_yh_stocks(suite[name], start_date, end_date, interval)
         save_to_file(data, f'{path}/{name}.csv')
+
+
+def get_and_save_suite_financials(path, suite):
+    for name in suite:
+        data = get_yh_earnings(suite[name])
+        result = data["quarterly_income_statement"].append(data["quarterly_balance_sheet"])
+        save_to_file(result, f'{path}/{name}.csv')
 
 
 it_companies = {
@@ -49,7 +56,7 @@ end_date = "03/06/2022"
 interval = "1d"
 
 if __name__ == '__main__':
-    print(get_yh_earnings('amzn'))
-
-# get_and_save_suite(it_companies)
-# get_and_save_suite(indices)
+    get_and_save_suite_financials(it_companies_earnings_path, it_companies)
+    # get_and_save_suite_stock(it_companies_stock_path, it_companies)
+    # get_and_save_suite_stock(it_companies_stock_path, indices)
+    # print(get_yh_earnings("nvda"))

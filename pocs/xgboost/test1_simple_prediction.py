@@ -130,8 +130,6 @@ def main():
     plot_importance(model, height=0.9)
     plt.show()
 
-    pass
-
 
 if __name__ == '__main__':
     main()

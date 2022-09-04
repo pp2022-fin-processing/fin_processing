@@ -30,11 +30,11 @@ def main():
         ind[name] = series
 
     for name, symbol in index_components.items():
-        series = stock_provider.get_data(date_begin, date_end,Interval(IntervalPeriod.days, 1), symbol)
+        series = stock_provider.get_data(date_begin, date_end, Interval(IntervalPeriod.days, 1), symbol)
         stc[name] = series
 
     for name, symbol in non_index_components.items():
-        series = stock_provider.get_data(date_begin, date_end,Interval(IntervalPeriod.days, 1), symbol)
+        series = stock_provider.get_data(date_begin, date_end, Interval(IntervalPeriod.days, 1), symbol)
         stc[name] = series
 
     print(f'Market measures across [{date_begin.strftime("%d.%m.%Y")}] - [{date_end.strftime("%d.%m.%Y")}] time period:')
