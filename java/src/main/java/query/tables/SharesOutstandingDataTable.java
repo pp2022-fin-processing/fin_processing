@@ -8,8 +8,6 @@ import lombok.Data;
 public class SharesOutstandingDataTable implements DataTable {
     Double data;
 
-    public static final String NET_INCOME_COLUMN_NAME = "netIncome";
-
     public Double getSharesOutstanding() {
         return data;
     }
