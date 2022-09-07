@@ -20,3 +20,20 @@ non_index_components = {
     'KGHM Polska Miedz S.A.': Symbol('KGHPF'),
     'Ferrexpo plc': Symbol('FXPO.L'),
 }
+
+it_companies = {
+    'amazon': Symbol('amzn', 'amazon'),
+    'apple': Symbol('aapl', 'apple'),
+    'google': Symbol('goog', 'google'),
+    'microsoft': Symbol('msft', 'microsoft'),
+    'facebook': Symbol('ft', 'facebook'),
+    'adobe': Symbol('adbe', 'adobe'),
+    # 'accenture': Symbol('acn'),
+    'akamai': Symbol('akam', 'akamai'),
+    'activision': Symbol('atvi', 'activision'),
+    'autodesk': Symbol('adsk', 'autodesk'),
+    'nvidia': Symbol('nvda', 'nvidia'),
+    'intel': Symbol('intc', 'intel'),
+    # 'at&t': Symbol('t'),
+    # 'tmobile': Symbol('tmus')
+}

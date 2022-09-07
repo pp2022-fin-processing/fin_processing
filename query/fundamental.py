@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from datetime import datetime
 
 import pandas
 
@@ -23,9 +24,13 @@ class FundamentalQueryAPIProvider(ABC):
         pass
 
     @abstractmethod
-    def get_earnings(self, symbol: Symbol) -> pandas.DataFrame:
+    def get_earnings(self, symbol: Symbol, date_start: datetime, date_end: datetime) -> dict:
         pass
 
     @abstractmethod
     def get_quarterly_earnings(self, symbol: Symbol) -> pandas.DataFrame:
+        pass
+
+    @abstractmethod
+    def get_shares_outstanding(self, symbol: Symbol, date_start: datetime, date_end: datetime) -> int:
         pass
