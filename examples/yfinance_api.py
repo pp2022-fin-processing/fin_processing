@@ -75,9 +75,10 @@ end_date = "2022-06-03"
 interval = "1d"
 
 for name in it_companies:
-    # data = get_yfinance(currencies[name], start_date, end_date, interval)
-    # print(data)
-    # save_to_file(data, "data/currencies/" + name + ".csv")
-    # plot_chart(data, name)
+    data = get_yfinance(currencies[name], start_date, end_date, interval)
+    save_to_file(data, "data/currencies/" + name + ".csv")
+    plot_chart(data, name)
+
+    save_to_file(data, "data/currencies/" + name + ".csv")
     data = get_shares_outstanding(it_companies[name])
     save_to_file(data, it_companies_shares_outstanding_path + "/" + name + ".csv")
