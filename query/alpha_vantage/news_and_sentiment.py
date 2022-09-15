@@ -5,7 +5,7 @@ from urllib.parse import urlencode
 
 import requests
 
-from data.feed import Feed
+from data.feed import Feed, Feeds
 from data.symbol import Symbol
 from data.topic import Topic
 from query.news_and_sentiment import NewsAndSentimentQueryAPIProvider
@@ -54,7 +54,7 @@ class AlphaVantageNewsAndSentimentsAPIProvider(NewsAndSentimentQueryAPIProvider)
     def get_news_and_sentiment(self, symbols: Optional[Sequence[Symbol]] = None,
                                topics: Optional[Sequence[Topic]] = None,
                                date_start: Optional[datetime] = None, date_end: Optional[datetime] = None,
-                               limit: Optional[int] = 50, sort: Optional[str] = 'LATEST') -> Sequence[Feed]:
+                               limit: Optional[int] = 50, sort: Optional[str] = 'LATEST') -> Feeds:
         function_v = 'NEWS_SENTIMENT'
         tickers_v = None if not symbols else ','.join([s.name for s in symbols])
         topics_v = None if not topics else ','.join([t.name for t in topics])
@@ -84,4 +84,4 @@ class AlphaVantageNewsAndSentimentsAPIProvider(NewsAndSentimentQueryAPIProvider)
         query_url = f'{self.base_url}{urlencode(query_params)}'
 
         response = dict(requests.get(query_url).json())
-        return [AlphaVantageNewsAndSentimentsAPIProvider._decode_single_feed(obj) for obj in response['feed']]
+        return Feeds([AlphaVantageNewsAndSentimentsAPIProvider._decode_single_feed(obj) for obj in response['feed']])

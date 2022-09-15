@@ -86,17 +86,17 @@ def optimization_space():
 
 
 def evaluate_model(realY, predictedY):
-    return mean_squared_error(realY, predictedY)
+    return np.sum((realY*100 - predictedY*100)**2)
 
 
 def main():
-    date_begin = datetime.strptime("01/01/2014", '%d/%m/%Y')
-    date_end = datetime.strptime("01/01/2016", '%d/%m/%Y')
+    date_begin = datetime.strptime("01/01/2017", '%d/%m/%Y')
+    date_end = datetime.strptime("01/01/2019", '%d/%m/%Y')
 
-    date_split = datetime.strptime("01/09/2015", '%d/%m/%Y')
+    date_split = datetime.strptime("01/09/2018", '%d/%m/%Y')
 
-    symbol_from = Symbol("AAPL")
-    symbol_to = None#Symbol("PLN")
+    symbol_from = Symbol("MCD")
+    symbol_to = None#Symbol("USD")
     data_train, data_test = get_data(date_begin, date_end, date_split, symbol_from, symbol_to)
 
     trainX, trainY = create_features(data_train, 'close')
