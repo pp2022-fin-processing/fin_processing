@@ -15,6 +15,8 @@ from data.market import Market, Region
 from data.symbol import Symbol
 from data.symbol_type import SymbolType
 
+from secrets.SecretsProvider import SecretProvider
+
 
 @dataclass
 class Interval:
@@ -50,9 +52,10 @@ class AlphaVantageStockAPI(StockAPI):
     __daily: str = 'TIME_SERIES_DAILY'
     __apikey: str = 'apikey'
 
-    def __init__(self, key: str):
+    def __init__(self):
         super().__init__()
-        self.key = key
+        secret_provider = SecretProvider()
+        self.key = secret_provider.get_api_credentials('alpha_vantage')['api_key']
 
     def supported_intervals(self) -> list[Interval]:
         return [
@@ -120,8 +123,7 @@ def common_entries(*dcts):
 
 
 def main():
-    key = 'PUW1OQME6VCHNZE8'
-    api = AlphaVantageStockAPI(key=key)
+    api = AlphaVantageStockAPI()
     results_ibm = api.make_query(
         StockDataQuery(
             Interval(timedelta(days=1)),

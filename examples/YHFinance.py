@@ -1,8 +1,12 @@
 import requests
 
+from secrets.SecretsProvider import SecretProvider
+
 url = "https://yh-finance.p.rapidapi.com/auto-complete"
 querystring = {"q": "tesla", "region": "US"}
-key = "78da9ef6bemsh47cf5019622f249p1d6768jsn4649c36a3cc8"
+secret_provider = SecretProvider()
+key = secret_provider.get_api_credentials('rapid_api')['api_key']
+
 
 headers = {
     "X-RapidAPI-Host": "yh-finance.p.rapidapi.com",

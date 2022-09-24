@@ -8,10 +8,6 @@ from query.provider import APIProvider
 import matplotlib.pyplot as plt
 
 def main():
-    f = open("../../vault.json", 'r')
-    data = json.load(f)
-    f.close()
-
     provider: APIProvider = YFinanceAPIProvider()
 
     forex = provider.forex()

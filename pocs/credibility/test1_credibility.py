@@ -26,7 +26,7 @@ def get_news_and_sentiments_for(date_start: datetime, date_end: datetime, symbol
         with open(cache_name, 'r') as f:
             nas_data = Feeds.from_json(f.read())
     else:
-        provider = AlphaVantageAPIProvider('E8AV2HTOX7YMASMG')
+        provider = AlphaVantageAPIProvider()
         nas_provider = provider.news_and_sentiments()
         nas_data = nas_provider.get_news_and_sentiment(date_start=date_start, date_end=date_end,
                                                        symbols=[symbol])
